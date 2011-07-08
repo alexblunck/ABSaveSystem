@@ -1,0 +1,41 @@
+ABLFXSaveSystem is a helper class written in Objective-C which can be used in iOS and Mac OSX Applications
+to save data. (Also works perfectly with the iOS/Mac game engine "cocos2D"
+
+
+FEATURES:
+
+- Save integers (int)
+
+- Save floats (float)
+
+- Save strings (NSString)
+
+- Saves the data into a clean .plist file
+
+- Extremely easy to use
+
+
+USAGE:
+
+1. Import ABLFXSaveSystemIOS.h & .m if you're using this in an iOS application otherwise import …MAC.h & .m
+
+2. Allocate ABLFXSaveSystem
+    ABLFXSaveSystemIOS *mySaveSystem = [[ABLFXSaveSystemIOS alloc] init];
+
+3. Save strings/ int's / floats's
+	[mySaveSystem saveString:@"string Value" withKey:@"stringKey"];
+    [mySaveSystem saveINT:4563 withKey:@"intKey"];
+    [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];
+
+4. Load strings/ int's / floats's
+    NSLog(@"loaded String: %@", [mySaveSystem loadStringForKey:@"stringKey"]);
+    NSLog(@"loaded INT: %i", [mySaveSystem loadINTForKey:@"intKey"]);
+    NSLog(@"loaded Float: %f", [mySaveSystem loadFloatForKey:@"floatKey"]);
+
+5. Load data directly into variables
+    NSString *myString = [mySaveSystem loadStringForKey:@"stringKey"]
+    int myINT = [mySaveSystem loadINTForKey:@"intKey"]
+    float myINT = [mySaveSystem loadFloatForKey:@"floatKey"]
+
+6. Dont forget to release the Save System after use!
+    [mySaveSystem release];
