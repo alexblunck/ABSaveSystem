@@ -23,9 +23,10 @@ USAGE:
     <code>ABLFXSaveSystemIOS *mySaveSystem = [[ABLFXSaveSystemIOS alloc] init];</code>
 
 3. Save strings/ int's / floats's<br>
+<code>
     [mySaveSystem saveString:@"string Value" withKey:@"stringKey"];<br>
     [mySaveSystem saveINT:4563 withKey:@"intKey"];<br>
-    [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];<br>
+    [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];<br></code>
 
 4. Load strings/ int's / floats's<br>
     NSLog(@"loaded String: %@", [mySaveSystem loadStringForKey:@"stringKey"]);<br>
