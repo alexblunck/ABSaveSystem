@@ -29,17 +29,19 @@ USAGE:
     [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];<br></code>
 
 4. Load strings/ int's / floats's<br>
+<code>
     NSLog(@"loaded String: %@", [mySaveSystem loadStringForKey:@"stringKey"]);<br>
     NSLog(@"loaded INT: %i", [mySaveSystem loadINTForKey:@"intKey"]);<br>
-    NSLog(@"loaded Float: %f", [mySaveSystem loadFloatForKey:@"floatKey"]);<br>
+    NSLog(@"loaded Float: %f", [mySaveSystem loadFloatForKey:@"floatKey"]);<br></code>
 
 5. Load data directly into variables<br>
+<code>
     NSString *myString = [mySaveSystem loadStringForKey:@"stringKey"]<br>
     int myINT = [mySaveSystem loadINTForKey:@"intKey"]<br>
-    float myINT = [mySaveSystem loadFloatForKey:@"floatKey"]<br>
+    float myINT = [mySaveSystem loadFloatForKey:@"floatKey"]<br></code>
 
 6. Dont forget to release the Save System after use!<br>
-    [mySaveSystem release];<br>
+    <code>[mySaveSystem release];<br></code>
     
 
 
