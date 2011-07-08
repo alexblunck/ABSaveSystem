@@ -20,7 +20,7 @@ USAGE:
 1. Import ABLFXSaveSystemIOS.h & .m if you're using this in an iOS application otherwise import …MAC.h & .m
 
 2. Allocate ABLFXSaveSystem <br>
-    ABLFXSaveSystemIOS *mySaveSystem = [[ABLFXSaveSystemIOS alloc] init];
+    <code>ABLFXSaveSystemIOS *mySaveSystem = [[ABLFXSaveSystemIOS alloc] init];</code>
 
 3. Save strings/ int's / floats's<br>
     [mySaveSystem saveString:@"string Value" withKey:@"stringKey"];<br>
