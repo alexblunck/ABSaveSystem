@@ -22,40 +22,40 @@ USAGE:
 2. Allocate ABLFXSaveSystem <br>
     ABLFXSaveSystemIOS *mySaveSystem = [[ABLFXSaveSystemIOS alloc] init];
 
-3. Save strings/ int's / floats's
-    [mySaveSystem saveString:@"string Value" withKey:@"stringKey"];
-    [mySaveSystem saveINT:4563 withKey:@"intKey"];
-    [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];
+3. Save strings/ int's / floats's<br>
+    [mySaveSystem saveString:@"string Value" withKey:@"stringKey"];<br>
+    [mySaveSystem saveINT:4563 withKey:@"intKey"];<br>
+    [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];<br>
 
-4. Load strings/ int's / floats's
-    NSLog(@"loaded String: %@", [mySaveSystem loadStringForKey:@"stringKey"]);
-    NSLog(@"loaded INT: %i", [mySaveSystem loadINTForKey:@"intKey"]);
-    NSLog(@"loaded Float: %f", [mySaveSystem loadFloatForKey:@"floatKey"]);
+4. Load strings/ int's / floats's<br>
+    NSLog(@"loaded String: %@", [mySaveSystem loadStringForKey:@"stringKey"]);<br>
+    NSLog(@"loaded INT: %i", [mySaveSystem loadINTForKey:@"intKey"]);<br>
+    NSLog(@"loaded Float: %f", [mySaveSystem loadFloatForKey:@"floatKey"]);<br>
 
-5. Load data directly into variables
-    NSString *myString = [mySaveSystem loadStringForKey:@"stringKey"]
-    int myINT = [mySaveSystem loadINTForKey:@"intKey"]
-    float myINT = [mySaveSystem loadFloatForKey:@"floatKey"]
+5. Load data directly into variables<br>
+    NSString *myString = [mySaveSystem loadStringForKey:@"stringKey"]<br>
+    int myINT = [mySaveSystem loadINTForKey:@"intKey"]<br>
+    float myINT = [mySaveSystem loadFloatForKey:@"floatKey"]<br>
 
-6. Dont forget to release the Save System after use!
-    [mySaveSystem release];
+6. Dont forget to release the Save System after use!<br>
+    [mySaveSystem release];<br>
     
 
 
-If you like this consider supporting me by buying my game "Be The Kiwi" for iPhone/iPad:
-http://itunes.apple.com/us/app/be-the-kiwi/id430552007?mt=8
+If you like this consider supporting me by buying my game "Be The Kiwi" for iPhone/iPad:<br>
+http://itunes.apple.com/us/app/be-the-kiwi/id430552007?mt=8<br>
 
 or
 
-Downloading "Be The Kiwi" for Mac OS for free and leaving a kind review ;)
-http://itunes.apple.com/us/app/be-the-kiwi/id446102536?mt=12
+Downloading "Be The Kiwi" for Mac OS for free and leaving a kind review ;)<br>
+http://itunes.apple.com/us/app/be-the-kiwi/id446102536?mt=12<br>
 
     
     
-LICENSE:
-You can use this helper class in any personal & commercial project. All I ask is
-that you don't seel the class itself
+LICENSE:<br>
+You can use this helper class in any personal & commercial project. All I ask is<br>
+that you don't seel the class itself<br>
 
-CONTACT:
-Feel free to contact me about any improvement requests / issues via mail
-(contact@ablfx.com) or via Twitter (http://www.twitter.com/blunckalex)
+CONTACT:<br>
+Feel free to contact me about any improvement requests / issues via mail<br>
+(contact@ablfx.com) or via Twitter (http://www.twitter.com/blunckalex)<br>
