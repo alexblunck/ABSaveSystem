@@ -8,10 +8,7 @@
 #import <Foundation/Foundation.h>
 
 
-@interface AblfxSaveSystemIOS : NSObject {
-    NSArray *paths;
-    NSString *documentsDirectory;
-    NSString *path;
+@interface ABLFXSaveSystemIOS : NSObject {
 }
 
 -(void) saveString:(NSString*) string withKey:(NSString*) key;
