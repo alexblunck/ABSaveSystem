@@ -8,7 +8,7 @@ FEATURES:
 
 - Save NSData
 
-- Helper Methods to quickly save strings (NSString), integers (int) and floats (float)
+- Helper Methods for quickly saving strings (NSString), integers (int) and floats (float)
 
 - Saves the data into a clean .plist file
 
