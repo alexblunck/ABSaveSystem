@@ -1,0 +1,488 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		FFDF608015161ECF0098D575 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDF607F15161ECF0098D575 /* UIKit.framework */; };
+		FFDF608215161ECF0098D575 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDF608115161ECF0098D575 /* Foundation.framework */; };
+		FFDF608415161ECF0098D575 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDF608315161ECF0098D575 /* CoreGraphics.framework */; };
+		FFDF608A15161ECF0098D575 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFDF608815161ECF0098D575 /* InfoPlist.strings */; };
+		FFDF608C15161ECF0098D575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF608B15161ECF0098D575 /* main.m */; };
+		FFDF609015161ECF0098D575 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF608F15161ECF0098D575 /* AppDelegate.m */; };
+		FFDF609E15161F0C0098D575 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF609C15161F0C0098D575 /* ViewController.m */; };
+		FFDF609F15161F0C0098D575 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFDF609D15161F0C0098D575 /* ViewController.xib */; };
+		FFDF60AC15162D900098D575 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60AB15162D900098D575 /* Person.m */; };
+		FFDF60AF1516383E0098D575 /* ABLFXSaveSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60AE1516383E0098D575 /* ABLFXSaveSystem.m */; };
+		FFDF60B715163C7A0098D575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDF60B615163C7A0098D575 /* Cocoa.framework */; };
+		FFDF60C115163C7A0098D575 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFDF60BF15163C7A0098D575 /* InfoPlist.strings */; };
+		FFDF60C315163C7A0098D575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60C215163C7A0098D575 /* main.m */; };
+		FFDF60C715163C7A0098D575 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = FFDF60C515163C7A0098D575 /* Credits.rtf */; };
+		FFDF60CA15163C7A0098D575 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60C915163C7A0098D575 /* AppDelegate.m */; };
+		FFDF60CD15163C7A0098D575 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFDF60CB15163C7A0098D575 /* MainMenu.xib */; };
+		FFDF60D415163CE00098D575 /* MacViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60D215163CE00098D575 /* MacViewController.m */; };
+		FFDF60D715163EE60098D575 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60AB15162D900098D575 /* Person.m */; };
+		FFDF60D815163F730098D575 /* ABLFXSaveSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60AE1516383E0098D575 /* ABLFXSaveSystem.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FFDF607B15161ECF0098D575 /* SaveExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFDF607F15161ECF0098D575 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		FFDF608115161ECF0098D575 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FFDF608315161ECF0098D575 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		FFDF608715161ECF0098D575 /* SaveExample-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SaveExample-Info.plist"; sourceTree = "<group>"; };
+		FFDF608915161ECF0098D575 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FFDF608B15161ECF0098D575 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FFDF608D15161ECF0098D575 /* SaveExample-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SaveExample-Prefix.pch"; sourceTree = "<group>"; };
+		FFDF608E15161ECF0098D575 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FFDF608F15161ECF0098D575 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FFDF609B15161F0C0098D575 /* ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
+		FFDF609C15161F0C0098D575 /* ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		FFDF609D15161F0C0098D575 /* ViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ViewController.xib; sourceTree = "<group>"; };
+		FFDF60AA15162D900098D575 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = SaveExample/Person.h; sourceTree = "<group>"; };
+		FFDF60AB15162D900098D575 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = SaveExample/Person.m; sourceTree = "<group>"; };
+		FFDF60AD1516383E0098D575 /* ABLFXSaveSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABLFXSaveSystem.h; sourceTree = "<group>"; };
+		FFDF60AE1516383E0098D575 /* ABLFXSaveSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABLFXSaveSystem.m; sourceTree = "<group>"; };
+		FFDF60B415163C790098D575 /* SaveExampleMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveExampleMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		FFDF60B615163C7A0098D575 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
+		FFDF60B915163C7A0098D575 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		FFDF60BA15163C7A0098D575 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		FFDF60BB15163C7A0098D575 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		FFDF60BE15163C7A0098D575 /* SaveExampleMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SaveExampleMac-Info.plist"; sourceTree = "<group>"; };
+		FFDF60C015163C7A0098D575 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		FFDF60C215163C7A0098D575 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		FFDF60C415163C7A0098D575 /* SaveExampleMac-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "SaveExampleMac-Prefix.pch"; sourceTree = "<group>"; };
+		FFDF60C615163C7A0098D575 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		FFDF60C815163C7A0098D575 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
+		FFDF60C915163C7A0098D575 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		FFDF60CC15163C7A0098D575 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		FFDF60D115163CE00098D575 /* MacViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MacViewController.h; sourceTree = "<group>"; };
+		FFDF60D215163CE00098D575 /* MacViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MacViewController.m; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FFDF607815161ECF0098D575 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFDF608015161ECF0098D575 /* UIKit.framework in Frameworks */,
+				FFDF608215161ECF0098D575 /* Foundation.framework in Frameworks */,
+				FFDF608415161ECF0098D575 /* CoreGraphics.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFDF60B115163C790098D575 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFDF60B715163C7A0098D575 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		FFDF607015161ECF0098D575 = {
+			isa = PBXGroup;
+			children = (
+				FFDF60A015161F3C0098D575 /* ABLFXSaveSystem */,
+				FFDF60D615163EC10098D575 /* Shared */,
+				FFDF608515161ECF0098D575 /* SaveExampleIOS */,
+				FFDF60BC15163C7A0098D575 /* SaveExampleMac */,
+				FFDF608615161ECF0098D575 /* Supporting Files */,
+				FFDF607E15161ECF0098D575 /* Frameworks */,
+				FFDF607C15161ECF0098D575 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		FFDF607C15161ECF0098D575 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF607B15161ECF0098D575 /* SaveExample.app */,
+				FFDF60B415163C790098D575 /* SaveExampleMac.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		FFDF607E15161ECF0098D575 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF607F15161ECF0098D575 /* UIKit.framework */,
+				FFDF608115161ECF0098D575 /* Foundation.framework */,
+				FFDF608315161ECF0098D575 /* CoreGraphics.framework */,
+				FFDF60B615163C7A0098D575 /* Cocoa.framework */,
+				FFDF60B815163C7A0098D575 /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FFDF608515161ECF0098D575 /* SaveExampleIOS */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF608E15161ECF0098D575 /* AppDelegate.h */,
+				FFDF608F15161ECF0098D575 /* AppDelegate.m */,
+				FFDF609B15161F0C0098D575 /* ViewController.h */,
+				FFDF609C15161F0C0098D575 /* ViewController.m */,
+				FFDF609D15161F0C0098D575 /* ViewController.xib */,
+			);
+			name = SaveExampleIOS;
+			path = SaveExample;
+			sourceTree = "<group>";
+		};
+		FFDF608615161ECF0098D575 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF608715161ECF0098D575 /* SaveExample-Info.plist */,
+				FFDF608815161ECF0098D575 /* InfoPlist.strings */,
+				FFDF608B15161ECF0098D575 /* main.m */,
+				FFDF608D15161ECF0098D575 /* SaveExample-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			path = SaveExample;
+			sourceTree = "<group>";
+		};
+		FFDF60A015161F3C0098D575 /* ABLFXSaveSystem */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF60AD1516383E0098D575 /* ABLFXSaveSystem.h */,
+				FFDF60AE1516383E0098D575 /* ABLFXSaveSystem.m */,
+			);
+			path = ABLFXSaveSystem;
+			sourceTree = "<group>";
+		};
+		FFDF60B815163C7A0098D575 /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF60B915163C7A0098D575 /* AppKit.framework */,
+				FFDF60BA15163C7A0098D575 /* CoreData.framework */,
+				FFDF60BB15163C7A0098D575 /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		FFDF60BC15163C7A0098D575 /* SaveExampleMac */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF60C815163C7A0098D575 /* AppDelegate.h */,
+				FFDF60C915163C7A0098D575 /* AppDelegate.m */,
+				FFDF60CB15163C7A0098D575 /* MainMenu.xib */,
+				FFDF60D115163CE00098D575 /* MacViewController.h */,
+				FFDF60D215163CE00098D575 /* MacViewController.m */,
+				FFDF60BD15163C7A0098D575 /* Supporting Files */,
+			);
+			path = SaveExampleMac;
+			sourceTree = "<group>";
+		};
+		FFDF60BD15163C7A0098D575 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF60BE15163C7A0098D575 /* SaveExampleMac-Info.plist */,
+				FFDF60BF15163C7A0098D575 /* InfoPlist.strings */,
+				FFDF60C215163C7A0098D575 /* main.m */,
+				FFDF60C415163C7A0098D575 /* SaveExampleMac-Prefix.pch */,
+				FFDF60C515163C7A0098D575 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		FFDF60D615163EC10098D575 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				FFDF60AA15162D900098D575 /* Person.h */,
+				FFDF60AB15162D900098D575 /* Person.m */,
+			);
+			name = Shared;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		FFDF607A15161ECF0098D575 /* SaveExample */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFDF609315161ECF0098D575 /* Build configuration list for PBXNativeTarget "SaveExample" */;
+			buildPhases = (
+				FFDF607715161ECF0098D575 /* Sources */,
+				FFDF607815161ECF0098D575 /* Frameworks */,
+				FFDF607915161ECF0098D575 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SaveExample;
+			productName = SaveExample;
+			productReference = FFDF607B15161ECF0098D575 /* SaveExample.app */;
+			productType = "com.apple.product-type.application";
+		};
+		FFDF60B315163C790098D575 /* SaveExampleMac */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = FFDF60CE15163C7A0098D575 /* Build configuration list for PBXNativeTarget "SaveExampleMac" */;
+			buildPhases = (
+				FFDF60B015163C790098D575 /* Sources */,
+				FFDF60B115163C790098D575 /* Frameworks */,
+				FFDF60B215163C790098D575 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SaveExampleMac;
+			productName = SaveExampleMac;
+			productReference = FFDF60B415163C790098D575 /* SaveExampleMac.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		FFDF607215161ECF0098D575 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0430;
+				ORGANIZATIONNAME = Ablfx;
+			};
+			buildConfigurationList = FFDF607515161ECF0098D575 /* Build configuration list for PBXProject "SaveExample" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = FFDF607015161ECF0098D575;
+			productRefGroup = FFDF607C15161ECF0098D575 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				FFDF607A15161ECF0098D575 /* SaveExample */,
+				FFDF60B315163C790098D575 /* SaveExampleMac */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		FFDF607915161ECF0098D575 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFDF608A15161ECF0098D575 /* InfoPlist.strings in Resources */,
+				FFDF609F15161F0C0098D575 /* ViewController.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFDF60B215163C790098D575 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFDF60C115163C7A0098D575 /* InfoPlist.strings in Resources */,
+				FFDF60C715163C7A0098D575 /* Credits.rtf in Resources */,
+				FFDF60CD15163C7A0098D575 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		FFDF607715161ECF0098D575 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFDF608C15161ECF0098D575 /* main.m in Sources */,
+				FFDF609015161ECF0098D575 /* AppDelegate.m in Sources */,
+				FFDF609E15161F0C0098D575 /* ViewController.m in Sources */,
+				FFDF60AC15162D900098D575 /* Person.m in Sources */,
+				FFDF60AF1516383E0098D575 /* ABLFXSaveSystem.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		FFDF60B015163C790098D575 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FFDF60D815163F730098D575 /* ABLFXSaveSystem.m in Sources */,
+				FFDF60D715163EE60098D575 /* Person.m in Sources */,
+				FFDF60C315163C7A0098D575 /* main.m in Sources */,
+				FFDF60CA15163C7A0098D575 /* AppDelegate.m in Sources */,
+				FFDF60D415163CE00098D575 /* MacViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		FFDF608815161ECF0098D575 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFDF608915161ECF0098D575 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FFDF60BF15163C7A0098D575 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFDF60C015163C7A0098D575 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		FFDF60C515163C7A0098D575 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFDF60C615163C7A0098D575 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		FFDF60CB15163C7A0098D575 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				FFDF60CC15163C7A0098D575 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		FFDF609115161ECF0098D575 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				SDKROOT = iphoneos;
+			};
+			name = Debug;
+		};
+		FFDF609215161ECF0098D575 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_32_BIT)";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_VERSION = com.apple.compilers.llvm.clang.1_0;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 5.1;
+				OTHER_CFLAGS = "-DNS_BLOCK_ASSERTIONS=1";
+				SDKROOT = iphoneos;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		FFDF609415161ECF0098D575 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SaveExample/SaveExample-Prefix.pch";
+				INFOPLIST_FILE = "SaveExample/SaveExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FFDF609515161ECF0098D575 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SaveExample/SaveExample-Prefix.pch";
+				INFOPLIST_FILE = "SaveExample/SaveExample-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		FFDF60CF15163C7A0098D575 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SaveExampleMac/SaveExampleMac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "SaveExampleMac/SaveExampleMac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		FFDF60D015163C7A0098D575 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SYSTEM_APPS_DIR)/Xcode.app/Contents/Developer/Library/Frameworks\"",
+				);
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "SaveExampleMac/SaveExampleMac-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				INFOPLIST_FILE = "SaveExampleMac/SaveExampleMac-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = macosx;
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		FFDF607515161ECF0098D575 /* Build configuration list for PBXProject "SaveExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFDF609115161ECF0098D575 /* Debug */,
+				FFDF609215161ECF0098D575 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFDF609315161ECF0098D575 /* Build configuration list for PBXNativeTarget "SaveExample" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFDF609415161ECF0098D575 /* Debug */,
+				FFDF609515161ECF0098D575 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		FFDF60CE15163C7A0098D575 /* Build configuration list for PBXNativeTarget "SaveExampleMac" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				FFDF60CF15163C7A0098D575 /* Debug */,
+				FFDF60D015163C7A0098D575 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = FFDF607215161ECF0098D575 /* Project object */;
+}

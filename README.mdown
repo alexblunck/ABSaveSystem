@@ -1,40 +1,59 @@
 ABLFXSaveSystem is a helper class written in Objective-C which can be used in iOS and Mac OSX Applications
 to save data. (Also works perfectly with the iOS/Mac game engine "cocos2D"
 
+___
 
 FEATURES:
+===
 
-- Save integers (int)
+- Save NSData
 
-- Save floats (float)
-
-- Save strings (NSString)
+- Helper Methods to quickly save strings (NSString), integers (int) and floats (float)
 
 - Saves the data into a clean .plist file
 
+- Mac / iOS / Cocos2D compatible
+
 - Extremely easy to use
 
+___
 
 USAGE:
+===
 
-1. Import ABLFXSaveSystemIOS.h & .m if you're using this in an iOS application otherwise import …MAC.h & .m
+1. Import ABLFXSaveSystem.h into your class, in the ABLFXSaveSystem.m file at the top change "AppName" to whatever your App is named .
 
-2. Allocate ABLFXSaveSystem <br>
-    <code>ABLFXSaveSystemIOS *mySaveSystem = [ABLFXSaveSystemIOS alloc];</code>
+2. Init ABLFXSaveSystem with the OS (<strong>ssIOS</strong> for iPhone/iPod/iPad or <strong>ssMAC</strong> for Mac)<br>
+    <code>ABLFXSaveSystem *saveSystem = [[ABLFXSaveSystem alloc] initWithOS:ssIOS];</code>
 
-3. Save strings/ int's / floats's<br>
+3. 1. You can basically convert any object that conforms to the NSCoding protocol to an NSData Object and safe that with the SaveSystem (See the Example App for using a Custom NSObject subclass exmaple)<br/>
+	<code>
+	NSArray *myArray = [NSArray arrayWithObjects:@"Object1", @"Object2", nil];<br/>
+    NSData *arrayData = [NSKeyedArchiver archivedDataWithRootObject:myArray];<br/>
+    [saveSystem saveData:arrayData withKey:@"myarray"];
+	</code>
+	<br/><br/>
+	2. Load NSData objects:<br/>
+	<code>
+	NSData *loadedData = [saveSystem loadDataForKey:@"myarray"];<br/>
+    NSArray *loadedArray = [NSKeyedUnarchiver unarchiveObjectWithData:loadedData];<br/>
+	</code>
+	<br/>
+
+
+4. There are also Helper Methods that let you very quickly save strings/ int's / floats's<br>
 <code>
     [mySaveSystem saveString:@"string Value" withKey:@"stringKey"];<br>
     [mySaveSystem saveINT:4563 withKey:@"intKey"];<br>
     [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];<br></code>
 
-4. Load strings/ int's / floats's<br>
+5. Load strings/ int's / floats's<br>
 <code>
     NSLog(@"loaded String: %@", [mySaveSystem loadStringForKey:@"stringKey"]);<br>
     NSLog(@"loaded INT: %i", [mySaveSystem loadINTForKey:@"intKey"]);<br>
     NSLog(@"loaded Float: %f", [mySaveSystem loadFloatForKey:@"floatKey"]);<br></code>
 
-5. Load data directly into variables<br>
+6. Load data directly into variables<br>
 <code>
     NSString *myString = [mySaveSystem loadStringForKey:@"stringKey"]<br>
     int myINT = [mySaveSystem loadINTForKey:@"intKey"]<br>
@@ -42,23 +61,34 @@ USAGE:
 
 6. Dont forget to release the Save System after use!<br>
     <code>[mySaveSystem release];<br></code>
-    
+  
+Check out the Example app for iOS and Mac for a usage example!
+-------
+<br> 
+___
 
 
+
+Some Other Stuff
+===
 If you like this consider supporting me by buying my game "Be The Kiwi" for iPhone/iPad:<br>
-http://itunes.apple.com/us/app/be-the-kiwi/id430552007?mt=8<br>
+[Be The Kiwi for iOS](http://itunes.apple.com/us/app/be-the-kiwi/id430552007?mt=8)
+<br>
 
 or
 
 Downloading "Be The Kiwi" for Mac OS for free and leaving a kind review ;)<br>
-http://itunes.apple.com/us/app/be-the-kiwi/id446102536?mt=12<br>
+[Be The Kiwi for Mac](http://itunes.apple.com/us/app/be-the-kiwi/id446102536?mt=12)
+<br>
 
     
     
-LICENSE:<br>
+LICENSE:
+-------
 You can use this helper class in any personal & commercial project. All I ask is<br>
-that you don't seel the class itself<br>
+that you don't sell the class itself<br>
 
-CONTACT:<br>
+CONTACT:
+-------
 Feel free to contact me about any improvement requests / issues via mail<br>
 (contact@ablfx.com) or via Twitter (http://www.twitter.com/blunckalex)<br>
