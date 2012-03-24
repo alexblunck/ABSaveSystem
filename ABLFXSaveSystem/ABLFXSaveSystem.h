@@ -21,6 +21,9 @@ typedef enum {ssIOS, ssMAC} ssOS;
 -(NSData*) loadDataForKey:(NSString*)key;
 
 //Helper Methods
+-(void) saveBool:(BOOL) boolean withKey:(NSString*) key;
+-(BOOL) loadBoolForKey:(NSString*) key;
+
 -(void) saveString:(NSString*) string withKey:(NSString*) key;
 -(NSString*) loadStringForKey:(NSString*) key;
 

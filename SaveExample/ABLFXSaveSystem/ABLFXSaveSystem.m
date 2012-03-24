@@ -74,6 +74,25 @@
 }
 
 //Helper Methods for the fast saving of Strings, int's and float's
+
+//SAVE BOOLEAN 's
+-(void) saveBool:(BOOL) boolean withKey:(NSString*) key {
+    NSNumber *boolNumber = [NSNumber numberWithBool:boolean];
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:boolNumber];
+    [self saveData:data withKey:key];
+}
+-(BOOL) loadBoolForKey:(NSString*) key {
+    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithContentsOfFile:[self getPath]];
+    NSData *loadedData = [tempDic objectForKey:key];
+    NSNumber *boolean = [NSKeyedUnarchiver unarchiveObjectWithData:loadedData];
+    
+    [tempDic release];
+    
+    return [boolean boolValue];
+}
+//SAVE BOOLEAN 's END
+
+
 //SAVE STRINGS
 -(void) saveString:(NSString*) string withKey:(NSString*) key {
     NSData *data = [NSKeyedArchiver archivedDataWithRootObject:string];
