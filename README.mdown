@@ -8,7 +8,7 @@ FEATURES:
 
 - Save NSData
 
-- Helper Methods for quickly saving strings (NSString), integers (int) and floats (float)
+- Helper Methods for quickly saving strings (NSString), integers (int), floats (float) and booleans (BOOL)
 
 - Saves the data into a clean .plist file
 
@@ -41,11 +41,12 @@ USAGE:
 	<br/>
 
 
-4. There are also Helper Methods that let you very quickly save strings/ int's / floats's<br>
+4. There are also Helper Methods that let you very quickly save strings/ int's / floats's / BOOL's<br>
 <code>
     [mySaveSystem saveString:@"string Value" withKey:@"stringKey"];<br>
     [mySaveSystem saveINT:4563 withKey:@"intKey"];<br>
-    [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];<br></code>
+    [mySaveSystem saveFloat:5.674f withKey:@"floatKey"];<br>
+    [mySaveSystem saveBool:YES withKey:@"boolKey"];<br></code>
 
 5. Load strings/ int's / floats's<br>
 <code>
