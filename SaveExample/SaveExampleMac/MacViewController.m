@@ -7,7 +7,7 @@
 //
 
 #import "MacViewController.h"
-#import "ABLFXSaveSystem.h"
+#import "ABSaveSystem.h"
 #import "Person.h"
 
 @implementation MacViewController
@@ -15,7 +15,8 @@
 -(IBAction)load:(id)sender {
     NSLog(@"load...");
     
-    ABLFXSaveSystem *saveSystem = [[ABLFXSaveSystem alloc] initWithOS:ssMAC];
+    ABSaveSystem *saveSystem = [ABSaveSystem saveSystem];
+    saveSystem.superOS = ssMAC;
     
     Person *loadedPerson = [NSKeyedUnarchiver unarchiveObjectWithData:[saveSystem loadDataForKey:@"person"]];
     NSString *formatedString = [NSString stringWithFormat:@"%@, %i", loadedPerson.name, loadedPerson.age];
@@ -28,7 +29,8 @@
 -(IBAction)save:(id)sender {
      NSLog(@"save...");
     
-    ABLFXSaveSystem *saveSystem = [[ABLFXSaveSystem alloc] initWithOS:ssMAC];
+    ABSaveSystem *saveSystem = [ABSaveSystem saveSystem];
+    saveSystem.superOS = ssMAC;
     
     Person *newPerson = [Person new];
     newPerson.name = nameField.stringValue;

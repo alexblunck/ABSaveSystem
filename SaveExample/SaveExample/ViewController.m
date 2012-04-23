@@ -25,7 +25,6 @@
     newPerson.age = [ageField.text intValue];
     
     NSData *personData = [NSKeyedArchiver archivedDataWithRootObject:newPerson];
-    
     [saveSystem saveData:personData withKey:@"person"];
 }
 
@@ -33,7 +32,7 @@
     [super viewDidLoad];
     
     //Allocate the SaveSystem
-    saveSystem = [[ABLFXSaveSystem alloc] initWithOS:ssIOS];
+    saveSystem = [ABSaveSystem saveSystem];
     
     //Load the Person Object with the key "person"
     Person *loadedPerson = [NSKeyedUnarchiver unarchiveObjectWithData:[saveSystem loadDataForKey:@"person"]];
@@ -49,6 +48,7 @@
 - (void)dealloc
 {
     [super dealloc];
+    [saveSystem release];
 }
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation

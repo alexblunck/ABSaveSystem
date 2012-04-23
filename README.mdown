@@ -1,4 +1,4 @@
-ABLFXSaveSystem is a helper class written in Objective-C which can be used in iOS and Mac OSX Applications
+ABSaveSystem is a helper class written in Objective-C which can be used in iOS and Mac OSX Applications
 to save data. (Also works perfectly with the iOS/Mac game engine "cocos2D"
 
 ___
@@ -7,6 +7,8 @@ FEATURES:
 ===
 
 - Save NSData
+
+- Save/Load to/from multiple .plists
 
 - Helper Methods for quickly saving strings (NSString), integers (int), floats (float) and booleans (BOOL)
 
@@ -21,10 +23,10 @@ ___
 USAGE:
 ===
 
-1. Import ABLFXSaveSystem.h into your class, in the ABLFXSaveSystem.m file at the top change "AppName" to whatever your App is named .
+1. Import ABSaveSystem.h into your class, in the ASaveSystem.m file at the top change "AppName" to whatever your App is named and "OS" to either IOS or MAC.
 
-2. Init ABLFXSaveSystem with the OS (<strong>ssIOS</strong> for iPhone/iPod/iPad or <strong>ssMAC</strong> for Mac)<br>
-    <code>ABLFXSaveSystem *saveSystem = [[ABLFXSaveSystem alloc] initWithOS:ssIOS];</code>
+2. Init ABSaveSystem <br>
+    <code>ABSaveSystem *saveSystem = [ABSaveSystem saveSystem];</code>
 
 3. 1. You can basically convert any object that conforms to the NSCoding protocol to an NSData Object and safe that with the SaveSystem (See the Example App for using a Custom NSObject subclass exmaple)<br/>
 	<code>
@@ -63,8 +65,25 @@ USAGE:
 6. Dont forget to release the Save System after use!<br>
     <code>[mySaveSystem release];<br></code>
   
+<br>
+<strong>Other Features</strong><br>
+- Use following method to save / load to/ from a different file(.plist):<br>
+<code>
+ABSaveSystem *ss = [ABSaveSystem saveSystem];<br>
+ss.superFileName = @"MyPlistName";<br>
+//Do saving / Loading
+</code>
+<p>
+- If you need to set the OS (mac/iOS) dynamically in code use the "superOS" property of the ABSaveSystem instance to either "ssIOS" or "ssMAC" (useful for projects with seperate MAC/iOS Targets)
+<p>
+- There is also a convience method to save/load NSData to different .plist's:<br>
+<code>
+[saveSystem saveData:myData withKey:@"myKey" fileName:@"MyPlistName"];
+</code>
+
+
 Check out the Example app for iOS and Mac for a usage example!
--------
+---
 <br> 
 ___
 
@@ -82,14 +101,21 @@ Downloading "Be The Kiwi" for Mac OS for free and leaving a kind review ;)<br>
 [Be The Kiwi for Mac](http://itunes.apple.com/us/app/be-the-kiwi/id446102536?mt=12)
 <br>
 
-    
-    
-LICENSE:
--------
-You can use this helper class in any personal & commercial project. All I ask is<br>
-that you don't sell the class itself<br>
-
 CONTACT:
 -------
 Feel free to contact me about any improvement requests / issues via mail<br>
-(contact@ablfx.com) or via Twitter (http://www.twitter.com/blunckalex)<br>
+(contact@ablfx.com) or via Twitter (http://www.twitter.com/blunckalex)<br>    
+    
+LICENSE:
+-------
+ABSaveSystem is licensed under the MIT License…or in simple use as you please, just don't sell the code itself ;)
+
+Copyright (c) 2012 Ablfx (Alexander Blunck)
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+

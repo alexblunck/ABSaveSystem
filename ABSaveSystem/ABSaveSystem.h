@@ -9,15 +9,15 @@
 
 typedef enum {ssIOS, ssMAC} ssOS;
 
-@interface ABLFXSaveSystem : NSObject {
-    
+@interface ABSaveSystem : NSObject {
+    ssOS operatingSystem;
 }
 
-@property (nonatomic) ssOS operatingSystem;
++(id) saveSystem;
 
--(id) initWithOS:(ssOS)operatingSystem ;
-
+-(void) saveData:(NSData *)data withKey:(NSString *)key fileName:(NSString*)fileName;
 -(void) saveData:(NSData*)data withKey:(NSString*)key;
+-(NSData*) loadDataForKey:(NSString*)key fileName:(NSString*)fileName;
 -(NSData*) loadDataForKey:(NSString*)key;
 
 //Helper Methods
@@ -32,5 +32,7 @@ typedef enum {ssIOS, ssMAC} ssOS;
 
 -(void) saveFloat:(float) number withKey:(NSString*) key;
 -(float) loadFloatForKey:(NSString*) key;
+
+@property (nonatomic, strong) NSString *superFileName;
 
 @end

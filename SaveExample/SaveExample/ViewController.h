@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-#import "ABLFXSaveSystem.h"
+#import "ABSaveSystem.h"
 
 @interface ViewController : UIViewController {
-    ABLFXSaveSystem *saveSystem;
+    ABSaveSystem *saveSystem;
 
     IBOutlet UITextField *nameField;
     IBOutlet UITextField *ageField;
