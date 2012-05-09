@@ -5,14 +5,16 @@ ___
 
 FEATURES:
 ===
+- Helper Methods for quickly saving strings (NSString), integers (int), floats (float) and booleans (BOOL)
 
 - Save NSData
 
-- Save/Load to/from multiple .plists
+- Saved Data is encrypted (With Public Apple frameworks->iTunes Connect safe)
 
-- Helper Methods for quickly saving strings (NSString), integers (int), floats (float) and booleans (BOOL)
+- Save/Load to/from multiple files
 
-- Saves the data into a clean .plist file
+
+- Saves the data into a clean .absave binary file
 
 - Mac / iOS / Cocos2D compatible
 
@@ -23,7 +25,7 @@ ___
 USAGE:
 ===
 
-1. Import ABSaveSystem.h into your class, in the ASaveSystem.m file at the top change "AppName" to whatever your App is named and "OS" to either IOS or MAC.
+1. Add File from "ABSaveSystem" folder to your project and import ABSaveSystem.h into your class, in the ASaveSystem.m file at the top change "AppName" to whatever your App is named and "OS" to either IOS or MAC.
 
 2. Init ABSaveSystem <br>
     <code>ABSaveSystem *saveSystem = [ABSaveSystem saveSystem];</code>

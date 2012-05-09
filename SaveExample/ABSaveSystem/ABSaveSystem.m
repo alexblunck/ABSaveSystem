@@ -1,14 +1,16 @@
 //
-//  ABLFXSaveSystemIOS.m
+//  ABSaveSystem.m
 //
 //  Created by Alexander Blunck on 7/07/11.
 //  Copyright 2011 ablfx. All rights reserved.
 //
 
 #import "ABSaveSystem.h"
+#import "NSData+AES256.h"
 
-#define APPNAME @"PastryPanic"
+#define APPNAME @"AppName"
 #define OS @"IOS" /* @"IOS" for iPhone/iPad/iPod & @"MAC" for mac */
+#define AESKEY @"MyKeyHere"
 
 @implementation ABSaveSystem
 
@@ -22,6 +24,7 @@
     self = [super init];
     if (self) {
         operatingSystem = ([OS isEqualToString:@"IOS"]) ? ssIOS : ssMAC;
+        
         self.superFileName = nil;
     }
     return self;
@@ -47,9 +50,9 @@
     if (operatingSystem == ssIOS) {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *fullFileName = [NSString stringWithFormat:@"%@.plist", fn];
+        NSString *fullFileName = [NSString stringWithFormat:@"%@.absave", fn];
         NSString *path = [documentsDirectory stringByAppendingPathComponent:fullFileName]; 
-        returnString = path;
+        returnString = path; 
     } else if (operatingSystem == ssMAC) {
         NSFileManager *fileManager = [NSFileManager defaultManager];
         //I'd recommend changing "AppName" to your apps name
@@ -59,11 +62,12 @@
             [fileManager createDirectoryAtPath: folder withIntermediateDirectories:NO attributes:nil error:nil];
         }
         //I'd recommend changing "AppName" to your apps name
-        NSString *fullFileName = [NSString stringWithFormat:@"%@.plist", fn];
+        NSString *fullFileName = [NSString stringWithFormat:@"%@.absave", fn];
         returnString = [folder stringByAppendingPathComponent:fullFileName];  
     } else {
-        NSLog(@"ABLFXSaveSystem: Operating System not set!");
+        NSLog(@"ABSaveSystem: Operating System not set!");
     }
+    
     
     //Shouldn't happen:
     return returnString;
@@ -76,12 +80,22 @@
     if (fileExists == NO) {
         tempDic = [[NSMutableDictionary alloc] init];
     } else {
-        tempDic = [[NSMutableDictionary alloc] initWithContentsOfFile:[self getPath:fileName]];
+        NSData *binaryFile = [NSData dataWithContentsOfFile:[self getPath:fileName]];
+        NSData *dataKey = [[NSString stringWithString:AESKEY] dataUsingEncoding:NSUTF8StringEncoding];
+        NSData *decryptedData = [binaryFile decryptedWithKey:dataKey];
+        tempDic = [NSKeyedUnarchiver unarchiveObjectWithData:decryptedData];
     }
     
     //Populate Dictionary with to save value/key and write to file
     [tempDic setObject:data forKey:key];
-    [tempDic writeToFile:[self getPath:fileName] atomically:YES];
+    //[tempDic writeToFile:[self getPath:fileName] atomically:YES];
+    
+    NSData *dicData = [NSKeyedArchiver archivedDataWithRootObject:tempDic];
+    
+    NSData *dataKey = [[NSString stringWithString:AESKEY] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *encryptedData = [dicData encryptedWithKey:dataKey];
+    
+    [encryptedData writeToFile:[self getPath:fileName] atomically:YES];
     
     //Release allocated Dictionary
     //[tempDic release];
@@ -92,7 +106,11 @@
 }
 
 -(NSData*) loadDataForKey:(NSString*)key fileName:(NSString*)fileName {
-    NSMutableDictionary *tempDic = [[NSMutableDictionary alloc] initWithContentsOfFile:[self getPath:fileName]];
+    NSData *binaryFile = [NSData dataWithContentsOfFile:[self getPath:fileName]];
+    NSData *dataKey = [[NSString stringWithString:AESKEY] dataUsingEncoding:NSUTF8StringEncoding];
+    NSData *decryptedData = [binaryFile decryptedWithKey:dataKey];
+    
+    NSMutableDictionary *tempDic = [NSKeyedUnarchiver unarchiveObjectWithData:decryptedData];
     NSData *loadedData = [tempDic objectForKey:key];
     
     //[tempDic release];
@@ -186,7 +204,7 @@
 }
 //SAVE NUMBERS (float) END
 
- 
+
 -(void) dealloc {
 	[super dealloc];
 }

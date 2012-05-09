@@ -1,5 +1,5 @@
 //
-//  AblfxSaveSystemIOS.h
+//  ABSaveSystem.h
 //
 //  Created by Alexander Blunck on 7/07/11.
 //  Copyright 2011 ablfx. All rights reserved.
@@ -34,5 +34,6 @@ typedef enum {ssIOS, ssMAC} ssOS;
 -(float) loadFloatForKey:(NSString*) key;
 
 @property (nonatomic, strong) NSString *superFileName;
+@property (nonatomic) ssOS superOS;
 
 @end

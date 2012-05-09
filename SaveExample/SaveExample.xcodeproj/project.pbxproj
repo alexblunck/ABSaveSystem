@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		FF2938691545C47900E76599 /* ABSaveSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2938681545C47900E76599 /* ABSaveSystem.m */; };
 		FF29386A1545C61400E76599 /* ABSaveSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = FF2938681545C47900E76599 /* ABSaveSystem.m */; };
+		FF5196DE155A964D007709DE /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5196DD155A964D007709DE /* NSData+AES256.m */; };
+		FF5196E4155A99AE007709DE /* NSData+AES256.m in Sources */ = {isa = PBXBuildFile; fileRef = FF5196DD155A964D007709DE /* NSData+AES256.m */; };
+		FF5196E6155A99C4007709DE /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FF5196E5155A99C4007709DE /* Cocoa.framework */; };
 		FFDF608015161ECF0098D575 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDF607F15161ECF0098D575 /* UIKit.framework */; };
 		FFDF608215161ECF0098D575 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDF608115161ECF0098D575 /* Foundation.framework */; };
 		FFDF608415161ECF0098D575 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDF608315161ECF0098D575 /* CoreGraphics.framework */; };
@@ -18,7 +21,6 @@
 		FFDF609E15161F0C0098D575 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF609C15161F0C0098D575 /* ViewController.m */; };
 		FFDF609F15161F0C0098D575 /* ViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = FFDF609D15161F0C0098D575 /* ViewController.xib */; };
 		FFDF60AC15162D900098D575 /* Person.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60AB15162D900098D575 /* Person.m */; };
-		FFDF60B715163C7A0098D575 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFDF60B615163C7A0098D575 /* Cocoa.framework */; };
 		FFDF60C115163C7A0098D575 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = FFDF60BF15163C7A0098D575 /* InfoPlist.strings */; };
 		FFDF60C315163C7A0098D575 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = FFDF60C215163C7A0098D575 /* main.m */; };
 		FFDF60C715163C7A0098D575 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = FFDF60C515163C7A0098D575 /* Credits.rtf */; };
@@ -31,6 +33,9 @@
 /* Begin PBXFileReference section */
 		FF2938671545C47900E76599 /* ABSaveSystem.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ABSaveSystem.h; sourceTree = "<group>"; };
 		FF2938681545C47900E76599 /* ABSaveSystem.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ABSaveSystem.m; sourceTree = "<group>"; };
+		FF5196DC155A964D007709DE /* NSData+AES256.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSData+AES256.h"; sourceTree = "<group>"; };
+		FF5196DD155A964D007709DE /* NSData+AES256.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSData+AES256.m"; sourceTree = "<group>"; };
+		FF5196E5155A99C4007709DE /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.7.sdk/System/Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
 		FFDF607B15161ECF0098D575 /* SaveExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		FFDF607F15161ECF0098D575 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		FFDF608115161ECF0098D575 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -47,10 +52,6 @@
 		FFDF60AA15162D900098D575 /* Person.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Person.h; path = SaveExample/Person.h; sourceTree = "<group>"; };
 		FFDF60AB15162D900098D575 /* Person.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = Person.m; path = SaveExample/Person.m; sourceTree = "<group>"; };
 		FFDF60B415163C790098D575 /* SaveExampleMac.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SaveExampleMac.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		FFDF60B615163C7A0098D575 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = Library/Frameworks/Cocoa.framework; sourceTree = DEVELOPER_DIR; };
-		FFDF60B915163C7A0098D575 /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		FFDF60BA15163C7A0098D575 /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
-		FFDF60BB15163C7A0098D575 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		FFDF60BE15163C7A0098D575 /* SaveExampleMac-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "SaveExampleMac-Info.plist"; sourceTree = "<group>"; };
 		FFDF60C015163C7A0098D575 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		FFDF60C215163C7A0098D575 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -78,7 +79,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				FFDF60B715163C7A0098D575 /* Cocoa.framework in Frameworks */,
+				FF5196E6155A99C4007709DE /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +89,8 @@
 		FF2938661545C47900E76599 /* ABSaveSystem */ = {
 			isa = PBXGroup;
 			children = (
+				FF5196DC155A964D007709DE /* NSData+AES256.h */,
+				FF5196DD155A964D007709DE /* NSData+AES256.m */,
 				FF2938671545C47900E76599 /* ABSaveSystem.h */,
 				FF2938681545C47900E76599 /* ABSaveSystem.m */,
 			);
@@ -119,11 +122,10 @@
 		FFDF607E15161ECF0098D575 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				FF5196E5155A99C4007709DE /* Cocoa.framework */,
 				FFDF607F15161ECF0098D575 /* UIKit.framework */,
 				FFDF608115161ECF0098D575 /* Foundation.framework */,
 				FFDF608315161ECF0098D575 /* CoreGraphics.framework */,
-				FFDF60B615163C7A0098D575 /* Cocoa.framework */,
-				FFDF60B815163C7A0098D575 /* Other Frameworks */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -151,16 +153,6 @@
 			);
 			name = "Supporting Files";
 			path = SaveExample;
-			sourceTree = "<group>";
-		};
-		FFDF60B815163C7A0098D575 /* Other Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				FFDF60B915163C7A0098D575 /* AppKit.framework */,
-				FFDF60BA15163C7A0098D575 /* CoreData.framework */,
-				FFDF60BB15163C7A0098D575 /* Foundation.framework */,
-			);
-			name = "Other Frameworks";
 			sourceTree = "<group>";
 		};
 		FFDF60BC15163C7A0098D575 /* SaveExampleMac */ = {
@@ -293,6 +285,7 @@
 				FFDF609E15161F0C0098D575 /* ViewController.m in Sources */,
 				FFDF60AC15162D900098D575 /* Person.m in Sources */,
 				FF2938691545C47900E76599 /* ABSaveSystem.m in Sources */,
+				FF5196DE155A964D007709DE /* NSData+AES256.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -300,6 +293,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FF5196E4155A99AE007709DE /* NSData+AES256.m in Sources */,
 				FF29386A1545C61400E76599 /* ABSaveSystem.m in Sources */,
 				FFDF60D715163EE60098D575 /* Person.m in Sources */,
 				FFDF60C315163C7A0098D575 /* main.m in Sources */,
