@@ -23,7 +23,13 @@
 -(id) init {
     self = [super init];
     if (self) {
-        operatingSystem = ([OS isEqualToString:@"IOS"]) ? ssIOS : ssMAC;
+        if (OS == @"IOS") {
+            operatingSystem = ssIOS;
+        } else if (OS == @"MAC") {
+            operatingSystem = ssMAC;
+        } else {
+            NSLog(@"ABSaveSystem: OS not set!");
+        }
         
         self.superFileName = nil;
     }
