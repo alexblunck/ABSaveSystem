@@ -1,218 +1,357 @@
 //
 //  ABSaveSystem.m
+//  ABFramework
 //
-//  Created by Alexander Blunck on 7/07/11.
-//  Copyright 2011 ablfx. All rights reserved.
+//  Created by Alexander Blunck on 11/11/12.
+//  Copyright (c) 2012 Ablfx. All rights reserved.
 //
 
+#import <CommonCrypto/CommonCryptor.h>
 #import "ABSaveSystem.h"
-#import "NSData+AES256.h"
-
-#define APPNAME @"AppName"
-#define OS @"IOS" /* @"IOS" for iPhone/iPad/iPod & @"MAC" for mac */
-#define AESKEY @"MyKeyHere"
 
 @implementation ABSaveSystem
 
-@synthesize superFileName=_superFileName, superOS=_superOS;
-
-+(id) saveSystem {
-    return [[self alloc] init];
+#pragma mark - Helper
++(NSString*) appName
+{
+    NSString *bundlePath = [[[NSBundle mainBundle] bundleURL] lastPathComponent];
+    return [[bundlePath stringByDeletingPathExtension] lowercaseString];
 }
 
--(id) init {
-    self = [super init];
-    if (self) {
-        if (OS == @"IOS") {
-            operatingSystem = ssIOS;
-        } else if (OS == @"MAC") {
-            operatingSystem = ssMAC;
-        } else {
-            NSLog(@"ABSaveSystem: OS not set!");
-        }
-        
-        self.superFileName = nil;
-    }
-    return self;
++(ABSaveSystemOS) os
+{
+#if TARGET_OS_IPHONE || TARGET_IPHONE_SIMULATOR
+    return ABSaveSystemOSIOS;
+#else
+    return ABSaveSystemOSMacOSX;
+#endif
 }
 
--(NSString*) getPath:(NSString*)fileName {
++(NSString*) filePathEncryption:(BOOL)encryption
+{
+    ABSaveSystemOS os = [self os];
     
-    NSString *returnString;
+    NSString *fileExt = (encryption) ? @".abssen" : @".abss";
+    NSString *fileName = [NSString stringWithFormat:@"%@%@", [[self appName] lowercaseString], fileExt];
     
-    //If a superOS has been set use that
-    if (self.superOS == ssIOS || self.superOS == ssMAC) {
-        operatingSystem = self.superOS;
-    }
-    
-    //If a superFileName has been set use that, otherwise use basic one or one specified by method input
-    NSString *fn;
-    if (self.superFileName == nil) {
-        fn = (fileName != nil) ? fileName : APPNAME;
-    } else {
-        fn = self.superFileName;
-    }
-    
-    if (operatingSystem == ssIOS) {
+    if (os == ABSaveSystemOSIOS)
+    {
         NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
         NSString *documentsDirectory = [paths objectAtIndex:0];
-        NSString *fullFileName = [NSString stringWithFormat:@"%@.absave", fn];
-        NSString *path = [documentsDirectory stringByAppendingPathComponent:fullFileName]; 
-        returnString = path; 
-    } else if (operatingSystem == ssMAC) {
-        NSFileManager *fileManager = [NSFileManager defaultManager];
-        //I'd recommend changing "AppName" to your apps name
-        NSString *folder = [NSString stringWithFormat:@"~/Library/Application Support/%@/", fn];
-        folder = [folder stringByExpandingTildeInPath];
-        if ([fileManager fileExistsAtPath: folder] == NO){
-            [fileManager createDirectoryAtPath: folder withIntermediateDirectories:NO attributes:nil error:nil];
-        }
-        //I'd recommend changing "AppName" to your apps name
-        NSString *fullFileName = [NSString stringWithFormat:@"%@.absave", fn];
-        returnString = [folder stringByAppendingPathComponent:fullFileName];  
-    } else {
-        NSLog(@"ABSaveSystem: Operating System not set!");
+        NSString *path = [documentsDirectory stringByAppendingPathComponent:fileName];
+        return path;
     }
-    
-    
-    //Shouldn't happen:
-    return returnString;
+    else if (os == ABSaveSystemOSMacOSX)
+    {
+        NSFileManager *fileManager = [NSFileManager defaultManager];
+        NSString *folderPath = [NSString stringWithFormat:@"~/Library/Application Support/%@/", [self appName]];
+        folderPath = [folderPath stringByExpandingTildeInPath];
+        if ([fileManager fileExistsAtPath:folderPath] == NO)
+        {
+            [fileManager createDirectoryAtPath:folderPath withIntermediateDirectories:NO attributes:nil error:nil];
+        }
+        return  [folderPath stringByAppendingPathComponent:fileName];
+    }
+
+    return nil;
 }
 
--(void) saveData:(NSData *)data withKey:(NSString *)key fileName:(NSString*)fileName {
++(NSMutableDictionary*) loadDictionaryEncryption:(BOOL)encryption
+{
+    NSData *binaryFile = [NSData dataWithContentsOfFile:[self filePathEncryption:encryption]];
+    
+    if (binaryFile == nil) {
+        return nil;
+    }
+    
+    NSMutableDictionary *dictionary;
+    //Either Decrypt saved data or just load it
+    if (encryption)
+    {
+        NSData *decryptedData = [self decryptData:binaryFile withKey:ABSS_AESKEY];
+        dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:decryptedData];
+    }
+    else
+    {
+        dictionary = [NSKeyedUnarchiver unarchiveObjectWithData:binaryFile];
+    }
+    
+    return dictionary;
+}
+
+
+
+#pragma mark - Objects
+#pragma mark - NSData
++(void) saveData:(NSData*)data key:(NSString*)key encryption:(BOOL)encryption
+{
     //Check if file exits, if so init Dictionary with it's content, otherwise allocate new one
-    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:[self getPath:fileName]];
-    NSMutableDictionary *tempDic;
-    if (fileExists == NO) {
-        tempDic = [[NSMutableDictionary alloc] init];
-    } else {
-        NSData *binaryFile = [NSData dataWithContentsOfFile:[self getPath:fileName]];
-        NSData *dataKey = [[NSString stringWithString:AESKEY] dataUsingEncoding:NSUTF8StringEncoding];
-        NSData *decryptedData = [binaryFile decryptedWithKey:dataKey];
-        tempDic = [NSKeyedUnarchiver unarchiveObjectWithData:decryptedData];
+    BOOL fileExists = [[NSFileManager defaultManager] fileExistsAtPath:[self filePathEncryption:encryption]];
+    NSMutableDictionary *tempDic = nil;
+    if (fileExists)
+    {
+        tempDic = [self loadDictionaryEncryption:encryption];
+    }
+    else
+    {
+       tempDic = [NSMutableDictionary dictionary];
     }
     
     //Populate Dictionary with to save value/key and write to file
     [tempDic setObject:data forKey:key];
-    //[tempDic writeToFile:[self getPath:fileName] atomically:YES];
     
     NSData *dicData = [NSKeyedArchiver archivedDataWithRootObject:tempDic];
     
-    NSData *dataKey = [[NSString stringWithString:AESKEY] dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *encryptedData = [dicData encryptedWithKey:dataKey];
+    //Either encrypt Data or just save
+    if (encryption)
+    {
+        NSData *encryptedData = [self encryptData:dicData withKey:ABSS_AESKEY];
+        [encryptedData writeToFile:[self filePathEncryption:YES] atomically:YES];
+    }
+    else
+    {
+        [dicData writeToFile:[self filePathEncryption:encryption] atomically:YES];
+    }
     
-    [encryptedData writeToFile:[self getPath:fileName] atomically:YES];
-    
-    //Release allocated Dictionary
-    //[tempDic release];
 }
 
--(void) saveData:(NSData*)data withKey:(NSString*)key {
-    [self saveData:data withKey:key fileName:nil];
++(void) saveData:(NSData*)data key:(NSString*)key
+{
+    [self saveData:data key:key encryption:ABSS_ENCRYPTION_ENABLED];
 }
 
--(NSData*) loadDataForKey:(NSString*)key fileName:(NSString*)fileName {
-    NSData *binaryFile = [NSData dataWithContentsOfFile:[self getPath:fileName]];
-    NSData *dataKey = [[NSString stringWithString:AESKEY] dataUsingEncoding:NSUTF8StringEncoding];
-    NSData *decryptedData = [binaryFile decryptedWithKey:dataKey];
++(NSData*) dataForKey:(NSString*)key encryption:(BOOL)encryption
+{
+    NSMutableDictionary *tempDic = [self loadDictionaryEncryption:encryption];
     
-    NSMutableDictionary *tempDic = [NSKeyedUnarchiver unarchiveObjectWithData:decryptedData];
+    //Retrieve NSData for specific key
     NSData *loadedData = [tempDic objectForKey:key];
     
-    //[tempDic release];
+    //Check if data exists for key
+    if (loadedData != nil)
+    {
+        return loadedData;
+    }
+    else
+    {
+        if (ABSS_LOGGING) NSLog(@"ABSaveSystem ERROR: dataForKey:\"%@\" -> data for key does not exist!", key);
+    }
+    return nil;
+}
+
++(NSData*) dataForKey:(NSString*)key
+{
+    return [self dataForKey:key encryption:ABSS_ENCRYPTION_ENABLED];
+}
+
+#pragma mark - Object
++(void) saveObject:(id<NSCoding>)object key:(NSString*)key
+{
+    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:object];
+    [self saveData:data key:key];
+}
+
++(id) objectForKey:(NSString*)key checkClass:(Class)aClass
+{
+    NSData *data = [self dataForKey:key];
+    if (data != nil)
+    {
+        //Check that the correct kind of class was retrieved from storage (skip check if aClass is not set)
+        id object = [NSKeyedUnarchiver unarchiveObjectWithData:data];
+        if ([object isKindOfClass:aClass] || aClass == nil)
+        {
+            return object;
+        }
+        else
+        {
+            if (ABSS_LOGGING) NSLog(@"ABSaveSystem ERROR: objectForKey:\"%@\" -> saved object is %@ not a %@", key, [object class],  aClass);
+        }
+    }
+    return nil;
+}
+
++(id) objectForKey:(NSString*)key
+{
+    return [self objectForKey:key checkClass:nil];
+}
+
+
+#pragma mark - NSString
++(void) saveString:(NSString*)string key:(NSString*)key
+{
+    [self saveObject:string key:key];
+}
+
++(NSString*) stringForKey:(NSString*)key
+{
+    return [self objectForKey:key checkClass:[NSString class]];
+}
+
+
+#pragma mark - NSNumber
++(void) saveNumber:(NSNumber*)number key:(NSString*)key
+{
+    [self saveObject:number key:key];
+}
+
++(NSNumber*) numberForKey:(NSString*)key
+{
+    return [self objectForKey:key checkClass:[NSNumber class]];
+}
+
+
+#pragma mark - NSDate
++(void) saveDate:(NSDate*)date key:(NSString*)key
+{
+    [self saveObject:date key:key];
+}
+
++(NSDate*) dateForKey:(NSString*)key
+{
+    return [self objectForKey:key checkClass:[NSDate class]];
+}
+
+
+
+#pragma mark - Primitives
+#pragma mark - NSInteger
++(void) saveInteger:(NSInteger)integer key:(NSString*)key
+{
+    [self saveNumber:[NSNumber numberWithInteger:integer] key:key];
+}
+
++(NSInteger) integerForKey:(NSString*)key
+{
+    NSNumber *number = [self numberForKey:key];
+    if (number != nil) {
+        return [number integerValue];
+    }
+    return 0;
+}
+
+
+#pragma mark - CGFloat
++(void) saveFloat:(CGFloat)aFloat key:(NSString*)key
+{
+    [self saveNumber:[NSNumber numberWithFloat:aFloat] key:key];
+}
+
++(CGFloat) floatForKey:(NSString*)key
+{
+    NSNumber *number = [self numberForKey:key];
+    if (number != nil) {
+        return [number floatValue];
+    }
+    return 0.0f;
+}
+
+
+#pragma mark - BOOL
++(void) saveBool:(BOOL)boolean key:(NSString*)key
+{
+    [self saveNumber:[NSNumber numberWithBool:boolean] key:key];
+}
+
++(BOOL) boolForKey:(NSString*)key
+{
+    NSNumber *number = [self numberForKey:key];
+    if (number != nil) {
+        return [number boolValue];
+    }
+    return NO;
+}
+
+
+
+#pragma mark - Misc
++(void) logSavedValues
+{
+    [self logSavedValues:NO];
+    [self logSavedValues:YES];
+}
+
++(void) logSavedValues:(BOOL)encrypted
+{
+    NSString *baseLogMessage = (encrypted) ? @"ABSaveSystem: logSavedValues (Encrypted)" : @"ABSaveSystem: logSavedValues";
     
-    return loadedData;
-}
-
--(NSData*) loadDataForKey:(NSString*)key {
-    return [self loadDataForKey:key fileName:nil];
-}
-
-//Helper Methods for the fast saving of booleans, strings, int's and float's
-
-//SAVE BOOLEAN 's
--(void) saveBool:(BOOL) boolean withKey:(NSString*) key {
-    NSNumber *boolNumber = [NSNumber numberWithBool:boolean];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:boolNumber];
-    [self saveData:data withKey:key];
-}
--(BOOL) loadBoolForKey:(NSString*) key {
-    NSData *loadedData = [self loadDataForKey:key];
-    NSNumber *boolean;
-    if (loadedData != NULL) {
-        boolean = [NSKeyedUnarchiver unarchiveObjectWithData:loadedData];
-    } else {
-        boolean = [NSNumber numberWithBool:NO];
+    NSMutableDictionary *tempDic= [self loadDictionaryEncryption:encrypted];
+    if (tempDic == nil)
+    {
+        NSLog(@"%@ -> NO DATA SAVED!", baseLogMessage);
+        return;
     }
     
-    return [boolean boolValue];
-}
-//SAVE BOOLEAN 's END
-
-
-//SAVE STRINGS
--(void) saveString:(NSString*) string withKey:(NSString*) key {
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:string];
-    [self saveData:data withKey:key];
-}
--(NSString*) loadStringForKey:(NSString*) key {
-    NSData *loadedData = [self loadDataForKey:key];
-    NSString *loadedString;
-    if (loadedData != NULL) {
-        loadedString = [NSKeyedUnarchiver unarchiveObjectWithData:loadedData];
-    } else {
-        loadedString = @"N/A";
-    }
+    NSLog(@"%@ -> START LOG", baseLogMessage);
+        
+    [tempDic enumerateKeysAndObjectsUsingBlock:^(id key, id obj, BOOL *stop)
+     {
+         NSString *valueString = [NSKeyedUnarchiver unarchiveObjectWithData:obj];
+        
+         NSLog(@"%@ -> Key:%@ -> %@", baseLogMessage, key, valueString);
+     }];
     
-    return loadedString;
+    NSLog(@"%@ -> END LOG", baseLogMessage);
 }
-//SAVE STRINGS END
 
-
-//SAVE NUMBERS (int)
--(void) saveINT:(int) number withKey:(NSString*) key{
-    NSNumber *numberObject = [NSNumber numberWithInt:number];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:numberObject];
-    [self saveData:data withKey:key];
++(void) truncate
+{
+    NSMutableDictionary *tempDic = [self loadDictionaryEncryption:NO];
+    [tempDic removeAllObjects];
+    NSData *dicData = [NSKeyedArchiver archivedDataWithRootObject:tempDic];
+    [dicData writeToFile:[self filePathEncryption:NO] atomically:YES];
+    
+    NSMutableDictionary *tempDicEnc = [self loadDictionaryEncryption:YES];
+    [tempDicEnc removeAllObjects];
+    NSData *encryptedData = [self encryptData:dicData withKey:ABSS_AESKEY];
+    [encryptedData writeToFile:[self filePathEncryption:YES] atomically:YES];
 }
--(int) loadINTForKey:(NSString*) key{
-    NSData *loadedData = [self loadDataForKey:key];
-    NSNumber *loadedNumberObject;
-    if (loadedData != NULL) {
-        loadedNumberObject = [NSKeyedUnarchiver unarchiveObjectWithData:loadedData];
-    } else {
-        loadedNumberObject = [NSNumber numberWithInt:0];
-    }
-    //Convert NSNumber object back to int
-    int loadedNumber = (int) [loadedNumberObject intValue];
-    return loadedNumber;
+
+
+
+#pragma mark - Helper
++(NSData*) makeCryptedVersionOfData:(NSData*)data withKeyData:(const void*)keyData ofLength:(long) keyLength decrypt:(bool)decrypt
+{
+	int keySize = kCCKeySizeAES256;
+    char key[kCCKeySizeAES256];
+	bzero(key, sizeof(key));
+	memcpy(key, keyData, keyLength > keySize ? keySize : keyLength);
+    
+	size_t bufferSize = [data length] + kCCBlockSizeAES128;
+	void* buffer = malloc(bufferSize);
+    
+	size_t dataUsed;
+    
+	CCCryptorStatus status = CCCrypt(decrypt ? kCCDecrypt : kCCEncrypt,
+									 kCCAlgorithmAES128,
+									 kCCOptionPKCS7Padding | kCCOptionECBMode,
+									 key, keySize,
+									 NULL,
+									 [data bytes], [data length],
+									 buffer, bufferSize,
+									 &dataUsed);
+    
+	switch(status)
+	{
+		case kCCSuccess:
+			return [NSData dataWithBytesNoCopy:buffer length:dataUsed];
+		default:
+			if (ABSS_LOGGING) NSLog(@"ABSaveSystem: ERROR -> Failed to encrypt/decrypt!");
+	}
+    
+	free(buffer);
+	return nil;
 }
-//SAVE NUMBERS (int) END
 
-
-//SAVE NUMBERS (float)
--(void) saveFloat:(float) number withKey:(NSString*) key{
-    NSNumber *numberObject = [NSNumber numberWithFloat:number];
-    NSData *data = [NSKeyedArchiver archivedDataWithRootObject:numberObject];
-    [self saveData:data withKey:key];
++(NSData*) encryptData:(NSData*)data withKey:(NSString*)key
+{
+    NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+	return [self makeCryptedVersionOfData:data withKeyData:[keyData bytes] ofLength:[keyData length] decrypt:false];
 }
--(float) loadFloatForKey:(NSString*) key{
-    NSData *loadedData = [self loadDataForKey:key];
-    NSNumber *loadedNumberObject;
-    if (loadedData != NULL) {
-        loadedNumberObject = [NSKeyedUnarchiver unarchiveObjectWithData:loadedData];
-    } else {
-        loadedNumberObject = [NSNumber numberWithFloat:0];
-    }
-    //Convert NSNumber object back to int
-    float loadedNumber = (float) [loadedNumberObject floatValue];
-    return loadedNumber;
-}
-//SAVE NUMBERS (float) END
 
-
--(void) dealloc {
-	[super dealloc];
++(NSData*) decryptData:(NSData*)data withKey:(NSString*)key
+{
+	NSData *keyData = [key dataUsingEncoding:NSUTF8StringEncoding];
+    return [self makeCryptedVersionOfData:data withKeyData:[keyData bytes] ofLength:[keyData length] decrypt:true];
 }
 
 @end

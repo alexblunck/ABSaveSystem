@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'ABSaveSystem-Example-OSX' target in the 'ABSaveSystem-Example-OSX' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
