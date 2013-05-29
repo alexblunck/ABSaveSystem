@@ -8,7 +8,7 @@ ABSaveSystem consists only of static methods, so all you need to do is add the A
 ```objective-c 
 #import "ABSaveSystem.h"
 ```
-All data is saved into a binary file named <appname>.abss, in the Documents directory on iOS or the "Application Support/<appname>" directory on OS X.
+All data is saved into a binary file named appname.abss, in the Documents directory on iOS or the "Application Support/appname>" directory on OS X.
 
 ###Save 
 ```objective-c
