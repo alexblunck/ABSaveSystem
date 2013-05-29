@@ -4,10 +4,11 @@ ABSaveSystem - Obj-C Helper class for iOS and Mac OS X to save NSData, other Obj
 
 
 ###Basics
-ABSaveSystem consits only of static methods, so all you need to do is add the ABSaveSystem .h / .m files and import the header
+ABSaveSystem consists only of static methods, so all you need to do is add the ABSaveSystem .h / .m files and import the header
 ```objective-c 
 #import "ABSaveSystem.h"
 ```
+All data is saved into a binary file named <appname>.abss, in the Documents directory on iOS or the "Application Support/<appname>" directory on OS X.
 
 ###Save 
 ```objective-c
