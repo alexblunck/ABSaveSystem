@@ -8,16 +8,20 @@
 
 #import <Foundation/Foundation.h>
 
-#ifndef ABSS_LOGGING
-    #define ABSS_LOGGING YES
+#ifndef ABSAVESYSTEM_LOGGING
+    #define ABSAVESYSTEM_LOGGING 1
 #endif
 
-#ifndef ABSS_ENCRYPTION_ENABLED
-    #define ABSS_ENCRYPTION_ENABLED NO
+#ifndef ABSAVESYSTEM_VERBOSE_LOGGING
+    #define ABSAVESYSTEM_VERBOSE_LOGGING 0
 #endif
 
-#ifndef ABSS_AESKEY
-    #define ABSS_AESKEY @"MySecretKey"
+#ifndef ABSAVESYSTEM_ENCRYPTION_ENABLED
+    #define ABSAVESYSTEM_ENCRYPTION_ENABLED NO
+#endif
+
+#ifndef ABSAVESYSTEM_AESKEY
+    #define ABSAVESYSTEM_AESKEY @"MySecretKey"
 #endif
 
 typedef enum {
@@ -33,8 +37,8 @@ typedef enum {
 //
 
 //NSData (Encryption selectable)
-+(void) saveData:(NSData*)data key:(NSString*)key encryption:(BOOL)encryption;
-+(NSData*) dataForKey:(NSString*)key encryption:(BOOL)encryption;
++(void) saveData:(NSData*)data key:(NSString*)key encrypted:(BOOL)encrypted;
++(NSData*) dataForKey:(NSString*)key encrypted:(BOOL)encrypted;
 //NSData (Use "ENCRYPTION_ENABLED" setting)
 +(void) saveData:(NSData*)data key:(NSString*)key;
 +(NSData*) dataForKey:(NSString*)key;
@@ -78,8 +82,12 @@ typedef enum {
 //
 //Misc
 //
-
-+(void) logSavedValues;
++(BOOL) exists:(NSString*)key;
++(BOOL) exists:(NSString*)key encrypted:(BOOL)encrypted;
++(void) logSavedValues:(BOOL)encrypted;
 +(void) truncate; //Deletes everything
++(void) truncateEncrypted:(BOOL)encrypted;
++(void) removeValueForKey:(NSString*)key;
++(void) removeValueForKey:(NSString*)key encrypted:(BOOL)encrypted;
 
 @end
