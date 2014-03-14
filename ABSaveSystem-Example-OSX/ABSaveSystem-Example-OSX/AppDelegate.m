@@ -53,19 +53,20 @@
     //You can change this behaviour by either adding following before importing the header file:
     //#define ABSS_ENCRYPTION_ENABLED YES or using follwoing method
     NSData *mySecretData = [NSKeyedArchiver archivedDataWithRootObject:@234];
-    [ABSaveSystem saveData:mySecretData key:@"boughtCoins" encryption:YES];
+    [ABSaveSystem saveData:mySecretData key:@"boughtCoins" encrypted:YES];
     
-    NSNumber *boughtCoins = [NSKeyedUnarchiver unarchiveObjectWithData:[ABSaveSystem dataForKey:@"boughtCoins" encryption:YES]];
+    NSNumber *boughtCoins = [NSKeyedUnarchiver unarchiveObjectWithData:[ABSaveSystem dataForKey:@"boughtCoins" encrypted:YES]];
     NSLog(@"Loaded encrypted NSData:%@", boughtCoins);
     
     
     //Misc
     
     //Log All saved data
-    [ABSaveSystem logSavedValues];
+    [ABSaveSystem logSavedValues:YES];
+    [ABSaveSystem logSavedValues:NO];
     
     //Delete all saved data
-    [ABSaveSystem truncate];
+    //[ABSaveSystem truncate];
 }
 
 @end
