@@ -3,14 +3,14 @@ ABSaveSystem
 ABSaveSystem - Obj-C Helper class for iOS and Mac OS X to save NSData, other Objects and primitive data types to persistant storage.
 
 
-###Basics
+### Basics
 ABSaveSystem consists only of static methods, so all you need to do is add the ABSaveSystem .h / .m files and import the header
 ```objective-c 
 #import "ABSaveSystem.h"
 ```
 All data is saved into a binary file named appname.abss, in the Documents directory on iOS or the "Application Support/appname>" directory on OS X.
 
-###Save 
+### Save 
 ```objective-c
 //NSData
 [ABSaveSystem saveData:myData key:@"myData"];
@@ -33,7 +33,7 @@ All data is saved into a binary file named appname.abss, in the Documents direct
 //Check ABSaveSystem header for all available methods
 ```
 
-###Load
+### Load
 ```objective-c
 //NSData
 NSData *myData = [ABSaveSystem dataForKey:@"myData"];
@@ -44,7 +44,7 @@ NSInteger myInteger = [ABSaveSystem integerForKey:@"myInteger"];
 //The other load methods follow the same naming convention
 ```
 
-###Encryption
+### Encryption
 ```objective-c
 /*
 By Default ABSaveSystem saves all data to a binary file unencrypted
@@ -60,7 +60,7 @@ NSData *mySecretData = [NSKeyedArchiver archivedDataWithRootObject:@234];
 NSNumber *boughtCoins = [NSKeyedUnarchiver unarchiveObjectWithData:[ABSaveSystem dataForKey:@"boughtCoins" encryption:YES]];
 ```
 
-##Misc
+## Misc
 ```objective-c
 //Log all saved values
 [ABSaveSystem logSavedValues];
@@ -75,5 +75,5 @@ NSNumber *boughtCoins = [NSKeyedUnarchiver unarchiveObjectWithData:[ABSaveSystem
 #define ABSS_AESKEY @"MySecretKey"
 ```
 
-#####LICENSE
+##### LICENSE
 ABSaveSystem is licensed under the MIT License. Check the LICENSE file, of course attribution is always a nice thing.
